@@ -1,4 +1,4 @@
-
+#breadth first search
 BFS(G, s):
     create queue Q
     mark s as visited
