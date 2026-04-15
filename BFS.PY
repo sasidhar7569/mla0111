@@ -1,28 +1,12 @@
-from collections import deque
-
-def bfs(graph, start):
-    visited = set()
-    queue = deque([start])
-    
-    while queue:
-        node = queue.popleft()
-        if node not in visited:
-            print(node, end=" ")  # Process the node
-            visited.add(node)
-            # Add all unvisited neighbors to the queue
-            for neighbor in graph[node]:
-                if neighbor not in visited:
-                    queue.append(neighbor)
-
-# Example usage:
-graph = {
-    'A': ['B', 'C'],
-    'B': ['A', 'D', 'E'],
-    'C': ['A', 'F'],
-    'D': ['B'],
-    'E': ['B', 'F'],
-    'F': ['C', 'E']
-}
-
-print("Breadth-First Search starting from A:")
-bfs(graph, 'A')
+Create an empty queue Q
+Create a visited array/set and mark all nodes as not visited
+Mark the starting node s as visited
+Insert s into the queue Q
+While Q is not empty, repeat:
+Remove (dequeue) a node u from Q
+Visit/print node u
+For each neighbor v of node u:
+If v is not visited:
+Mark v as visited
+Insert v into Q
+End
