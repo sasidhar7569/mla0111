@@ -1,16 +1,14 @@
-Breadth-First Search (BFS) Algorithm
-Algorithm: BFS(G, s)
 
-(G = Graph, s = starting vertex)
+BFS(G, s):
+    create queue Q
+    mark s as visited
+    enqueue s into Q
 
-Create an empty queue Q
-Mark all vertices as not visited
-Mark the starting vertex s as visited
-Insert s into queue Q
-While Q is not empty, do:
-Remove (dequeue) a vertex u from Q
-Visit/print u
-For each adjacent vertex v of u:
-If v is not visited:
-Mark v as visited
-Insert v into Q
+    while Q is not empty:
+        u = dequeue Q
+        print u
+
+        for each vertex v in adjacency list of u:
+            if v is not visited:
+                mark v as visited
+                enqueue v into Q
