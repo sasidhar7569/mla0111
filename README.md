@@ -103,3 +103,38 @@ WHILE PQ is not empty DO
 END WHILE
 
 PRINT "No path found"
+
+## A* Search Algorithm
+CREATE empty priority queue PQ
+CREATE empty set Visited
+
+SET g(StartNode) = 0
+ENQUEUE (StartNode, f = g(StartNode) + h(StartNode)) into PQ
+
+WHILE PQ is not empty DO
+    CurrentNode ← DEQUEUE node with minimum f value from PQ
+
+    IF CurrentNode is in Visited THEN
+        CONTINUE
+    END IF
+
+    ADD CurrentNode to Visited
+    VISIT CurrentNode
+
+    IF CurrentNode = GoalNode THEN
+        PRINT "Goal reached"
+        STOP
+    END IF
+
+    FOR each Neighbor of CurrentNode in Graph DO
+        g_new ← g(CurrentNode) + weight(CurrentNode, Neighbor)
+        f_new ← g_new + h(Neighbor)
+
+        IF Neighbor not in Visited OR g_new is smaller THEN
+            UPDATE g(Neighbor) = g_new
+            ENQUEUE (Neighbor, f_new) into PQ
+        END IF
+    END FOR
+END WHILE
+
+PRINT "No path found"
