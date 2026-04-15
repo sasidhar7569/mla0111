@@ -71,3 +71,35 @@ WHILE Q is not empty DO
 END WHILE
 
 PRINT "No Solution"
+
+## Uniform Cost Search
+CREATE empty priority queue PQ
+CREATE empty set Visited
+
+ENQUEUE (StartNode, 0) into PQ   // (Node, Cost)
+
+WHILE PQ is not empty DO
+    (CurrentNode, CurrentCost) ← DEQUEUE node with minimum cost from PQ
+
+    IF CurrentNode is in Visited THEN
+        CONTINUE
+    END IF
+
+    ADD CurrentNode to Visited
+    VISIT CurrentNode
+
+    IF CurrentNode = GoalNode THEN
+        PRINT "Goal reached with minimum cost"
+        STOP
+    END IF
+
+    FOR each Neighbor of CurrentNode in Graph DO
+        Cost ← CurrentCost + weight(CurrentNode, Neighbor)
+
+        IF Neighbor not in Visited THEN
+            ENQUEUE (Neighbor, Cost) into PQ
+        END IF
+    END FOR
+END WHILE
+
+PRINT "No path found"
